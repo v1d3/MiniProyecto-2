@@ -4,6 +4,7 @@
 import pandas as pd
 import math
 import matplotlib.pyplot as plt
+import time
 from matplotlib.patches import Rectangle, Circle
 
 class Point:
@@ -251,6 +252,11 @@ geopoint_values = df['geopoint'].values
 #quadtree = Quad(topLeft=Point(min_longitude, min_latitude), botRight=Point(max_longitude, max_latitude))
 
 quadtree = Quad(topLeft=Point(expanded_min_longitude, expanded_min_latitude), botRight=Point(expanded_max_longitude, expanded_max_latitude))
+#quadtree = Quad(Point(0,0),Point(500,300))
+def function():
+    pass
+
+start_time = time.time()
 
 for country, city, region, latitude, longitude, geopoint, accentcity, population in zip(country_values, city_values, region_values, latitude_values, longitude_values, geopoint_values, accentcity_values, population_values):
     point = Point(float(longitude), float(latitude))
@@ -264,4 +270,8 @@ for country, city, region, latitude, longitude, geopoint, accentcity, population
     }
     node = Node(point, valores, poblacion)
     quadtree.insert(node)
-    
+
+end_time = time.time()
+
+
+print('Execution time: {} seconds'.format(end_time - start_time ))
